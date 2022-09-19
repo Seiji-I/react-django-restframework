@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  reactjs:
+    container_name: reactjs
+    build: ./reactjs
+    ports:
+      - 3000:3000
+    volumes:
+      - ./reactjs/my-app:/app
+    command:
+      sh -c "npm install && npm start"
+
+  django:
+    container_name: django
+    build: ./django
+    ports:
+      - 8000:8000
+    volumes:
+      - ./django/app:/app
+    command:
+      sh -c "python3 manage.py runserver 0.0.0.0:8000"
